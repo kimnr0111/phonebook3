@@ -15,6 +15,7 @@ import com.javaex.vo.PersonVo;
 @Controller
 @RequestMapping("/phone")
 public class PhoneController {
+	PhoneDao phoneDao = new PhoneDao();
 	
 	@RequestMapping(value = "/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String writeForm() {
@@ -25,7 +26,6 @@ public class PhoneController {
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public String list(Model model) {
 		
-		PhoneDao phoneDao = new PhoneDao();
 		List<PersonVo> pList = phoneDao.getPersonList();
 		System.out.println(pList.toString());
 		
@@ -41,18 +41,43 @@ public class PhoneController {
 		System.out.println("/phone/write");
 		System.out.println(personVo.toString());
 		
-		PhoneDao phoneDao = new PhoneDao();
 		phoneDao.personInsert(personVo);
+		
 		return "redirect:/phone/list";
 		
 	}
 	
 	@RequestMapping(value = "/updateForm", method = {RequestMethod.GET, RequestMethod.POST})
-	public String updateForm() {
+	public String updateForm(Model model, @RequestParam("pid") int personId) {
+		System.out.println("/phone/updateForm");
+		System.out.println(personId);
 		
-		return "/WEB-INF/views/update.jsp";
+		PersonVo person = phoneDao.getPerson(personId);
+		System.out.println(person.toString());
+		
+		model.addAttribute("person", person);
+		
+		return "/WEB-INF/views/updateForm.jsp";
 	}
 	
+	@RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
+	public String update(@ModelAttribute PersonVo personVo) {
+		System.out.println("/phone/update");
+		System.out.println(personVo.toString());
+		phoneDao.personUpdate(personVo);
+		
+		return "redirect:/phone/list";
+	}
+	
+	@RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
+	public String delete(@RequestParam("pid") int personId) {
+		System.out.println("/phone/delete");
+		System.out.println(personId);
+		
+		phoneDao.personDelete(personId);
+		
+		return "redirect:/phone/list";
+	}
 	/*
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(@RequestParam("name") String name, 

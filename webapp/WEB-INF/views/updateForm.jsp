@@ -13,12 +13,11 @@
 		전화번호를 수정하려면<br>
 		아래 항목을 수정하고 "수정" 버튼을 클릭하세요.
 	</p>
-	<form action="/pb2/pbc" method="get">
-		<input type="hidden" name="action" value="update">
-		이름(name): <input type="text" name="name" value="<%=personVo.getName()%>"><br>
-		핸드폰(hp): <input type="text" name="hp" value="<%=personVo.getHp()%>"><br>
-		회사(company): <input type="text" name="company" value="<%=personVo.getCompany()%>"><br>
-		<input type="hidden" name="personid" value="<%=personVo.getPersonId()%>">
+	<form action="/pb3/phone/update" method="get">
+		이름(name): <input type="text" name="name" value="${person.name }"><br>
+		핸드폰(hp): <input type="text" name="hp" value="${person.hp }"><br>
+		회사(company): <input type="text" name="company" value="${person.company }"><br>
+		<input type="hidden" name="personId" value="${person.personId }">
 		<button type="submit">수정</button>
 	</form>
 		

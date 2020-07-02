@@ -33,9 +33,9 @@
 		</tr>
 		<tr>
 			<td>
-			<a href="/pb3/phone/updateForm">수정</a>
+			<a href="/pb3/phone/updateForm?pid=${vo.personId }">수정</a>
 			</td>
-			<td><a href="/pb3/phone/deleteForm">삭제</a></td>
+			<td><a href="/pb3/phone/delete?pid=${vo.personId }">삭제</a></td>
 		</tr>
 	</table>
 	<br>
