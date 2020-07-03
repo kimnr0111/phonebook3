@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,6 +47,7 @@ public class PhoneController {
 		return "redirect:/phone/list";
 		
 	}
+
 	
 	@RequestMapping(value = "/updateForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String updateForm(Model model, @RequestParam("pid") int personId) {
@@ -59,6 +61,22 @@ public class PhoneController {
 		
 		return "/WEB-INF/views/updateForm.jsp";
 	}
+	
+	//PathVariable
+	/*
+	@RequestMapping(value = "/updateForm/{personId}", method = {RequestMethod.GET, RequestMethod.POST})
+	public String updateForm(Model model, @PathVariable("personId") int personId) {
+		System.out.println("/phone/updateForm");
+		System.out.println(personId);
+		
+		PersonVo person = phoneDao.getPerson(personId);
+		System.out.println(person.toString());
+		
+		model.addAttribute("person", person);
+		
+		return "/WEB-INF/views/updateForm.jsp";
+	}
+	*/
 	
 	@RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
 	public String update(@ModelAttribute PersonVo personVo) {
@@ -96,4 +114,3 @@ public class PhoneController {
 	
 	
 }
-
