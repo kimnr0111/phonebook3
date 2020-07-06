@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,27 +17,25 @@ import com.javaex.vo.PersonVo;
 @Controller
 @RequestMapping("/phone")
 public class PhoneController {
-	PhoneDao phoneDao = new PhoneDao();
 	
-	@RequestMapping(value = "/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
-	public String writeForm() {
-		
-		return "writeForm";
-	}
+	@Autowired
+	PhoneDao phoneDao;
+
 	
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public String list(Model model) {
+		System.out.println("/phone/list");
 		
-		List<PersonVo> pList = phoneDao.getPersonList();
-		System.out.println(pList.toString());
+		List<PersonVo> personList = phoneDao.getPersonList();
+		System.out.println(personList.toString());
 		
-		model.addAttribute("pList", pList);
+		model.addAttribute("pList", personList);
 		
 		return "list";
 		
 	}
 	
-	
+	/*
 	@RequestMapping(value = "/write", method = {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PersonVo personVo) {
 		System.out.println("/phone/write");
@@ -46,6 +45,13 @@ public class PhoneController {
 		
 		return "redirect:/phone/list";
 		
+	}
+	
+	
+	@RequestMapping(value = "/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
+	public String writeForm() {
+		
+		return "writeForm";
 	}
 
 	
@@ -63,7 +69,7 @@ public class PhoneController {
 	}
 	
 	//PathVariable
-	/*
+	
 	@RequestMapping(value = "/updateForm/{personId}", method = {RequestMethod.GET, RequestMethod.POST})
 	public String updateForm(Model model, @PathVariable("personId") int personId) {
 		System.out.println("/phone/updateForm");
@@ -76,7 +82,7 @@ public class PhoneController {
 		
 		return "/WEB-INF/views/updateForm.jsp";
 	}
-	*/
+	
 	
 	@RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
 	public String update(@ModelAttribute PersonVo personVo) {
@@ -96,7 +102,7 @@ public class PhoneController {
 		
 		return "redirect:/phone/list";
 	}
-	/*
+	
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(@RequestParam("name") String name, 
 						@RequestParam("hp") String hp, 
@@ -110,6 +116,7 @@ public class PhoneController {
 		
 		return "redirect:/phone/list";
 	}
+	
 	*/
 	
 	

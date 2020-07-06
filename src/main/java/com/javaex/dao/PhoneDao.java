@@ -1,38 +1,48 @@
 package com.javaex.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+
 import java.util.List;
+
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.PersonVo;
 
+@Repository
 public class PhoneDao {
+	
+	@Autowired
+	private SqlSession sqlSession;
+	
 
+	 //사람 리스트(검색할때)
+	public List<PersonVo> getPersonList() {
+		List<PersonVo> personList = sqlSession.selectList("phonebook.getlist");
+		System.out.println(personList.toString());
+		return personList;
+	}
+	
+//	@Autowired
+//	private DataSource dataSource;
+
+	
 	// 0. import java.sql.*;
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
+//	Connection conn = null;
+//	PreparedStatement pstmt = null;
+//	ResultSet rs = null;
 
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String id = "phonedb";
-	private String pw = "phonedb";
-
+	/*
 	private void getConnection() {
 		try {
 			// 1. JDBC 드라이버 (Oracle) 로딩
-			Class.forName(driver);
+			
 
 			// 2. Connection 얻어오기
-			conn = DriverManager.getConnection(url, id, pw);
+			conn = dataSource.getConnection();
 			// System.out.println("접속성공");
 
-		} catch (ClassNotFoundException e) {
-			System.out.println("error: 드라이버 로딩 실패 - " + e);
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		}
@@ -92,55 +102,13 @@ public class PhoneDao {
 		return getPersonList("");
 	}
 
-	// 사람 리스트(검색할때)
+	 //사람 리스트(검색할때)
 	public List<PersonVo> getPersonList(String keword) {
-		List<PersonVo> personList = new ArrayList<PersonVo>();
 
-		getConnection();
-
-		try {
-
-			// 3. SQL문 준비 / 바인딩 / 실행 --> 완성된 sql문을 가져와서 작성할것
-			String query = "";
-			query += " select  person_id, ";
-			query += "         name, ";
-			query += "         hp, ";
-			query += "         company ";
-			query += " from person";
-
-			if (keword != "" || keword == null) {
 				query += " where name like ? ";
 				query += " or hp like  ? ";
 				query += " or company like ? ";
-				pstmt = conn.prepareStatement(query); // 쿼리로 만들기
 
-				pstmt.setString(1, '%' + keword + '%'); // ?(물음표) 중 1번째, 순서중요
-				pstmt.setString(2, '%' + keword + '%'); // ?(물음표) 중 2번째, 순서중요
-				pstmt.setString(3, '%' + keword + '%'); // ?(물음표) 중 3번째, 순서중요
-			} else {
-				pstmt = conn.prepareStatement(query); // 쿼리로 만들기
-			}
-
-			rs = pstmt.executeQuery();
-
-			// 4.결과처리
-			while (rs.next()) {
-				int personId = rs.getInt("person_id");
-				String name = rs.getString("name");
-				String hp = rs.getString("hp");
-				String company = rs.getString("company");
-
-				PersonVo personVo = new PersonVo(personId, name, hp, company);
-				personList.add(personVo);
-			}
-
-		} catch (SQLException e) {
-			System.out.println("error:" + e);
-		}
-
-		close();
-
-		return personList;
 
 	}
 
@@ -244,5 +212,6 @@ public class PhoneDao {
 		close();
 		return personVo;
 	}
+	*/
 
 }
