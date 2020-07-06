@@ -21,7 +21,7 @@ public class PhoneController {
 	@RequestMapping(value = "/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String writeForm() {
 		
-		return "/WEB-INF/views/writeForm.jsp";
+		return "writeForm";
 	}
 	
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
@@ -32,7 +32,7 @@ public class PhoneController {
 		
 		model.addAttribute("pList", pList);
 		
-		return "/WEB-INF/views/list.jsp";
+		return "list";
 		
 	}
 	
@@ -59,7 +59,7 @@ public class PhoneController {
 		
 		model.addAttribute("person", person);
 		
-		return "/WEB-INF/views/updateForm.jsp";
+		return "updateForm";
 	}
 	
 	//PathVariable
