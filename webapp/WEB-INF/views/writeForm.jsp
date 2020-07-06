@@ -10,7 +10,7 @@
 	<h1>전화번호 등록</h1>
 	<p>전화번호를 등록하려면<br>
 	아래 항목을 기입하고 '등록' 버튼을 클릭하세요.</p>
-	<form action = "/pb3/phone/write" method = "get">
+	<form action = "${pageContext.request.contextPath }/phone/write" method = "get">
 		이름(name): <input type="text" name = "name"> <br>
 		핸드폰(hp): <input type="text" name = "hp"> <br>
 		회사(company): <input type="text" name = "company"> <br>
@@ -18,7 +18,7 @@
 	</form>
 	
 	<p>
-		<a href="http://localhost:8088/pb3/phone/list">리스트 바로가기</a>
+		<a href="${pageContext.request.contextPath }/phone/list">리스트 바로가기</a>
 	</p>
 
 </body>
