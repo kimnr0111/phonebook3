@@ -47,6 +47,18 @@ public class PhoneController {
 		
 	}
 	
+	@RequestMapping(value = "/write2", method = {RequestMethod.GET, RequestMethod.POST})
+	public String write2(@RequestParam("name") String name, 
+						 @RequestParam("hp") String hp,  
+						 @RequestParam("company") String company) {
+		System.out.println("/phone/write2");
+		
+		phoneDao.personInsert2(name, hp, company);
+		
+		return "redirect:/phone/list";
+		
+	}
+	
 	
 	@RequestMapping(value = "/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String writeForm() {

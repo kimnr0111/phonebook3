@@ -1,8 +1,9 @@
 package com.javaex.dao;
 
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,16 @@ public class PhoneDao {
 		int count = sqlSession.insert("phonebook.insert", personVo);
 		System.out.println(count);
 		return count;
+	}
+	
+	public void personInsert2(String name, String hp, String company) {
+		Map<String, Object> pMap = new HashMap<String, Object>();
+		pMap.put("name", name);
+		pMap.put("hp", hp);
+		pMap.put("company", company);
+		
+		sqlSession.insert("phonebook.insert2", pMap);
+		
 	}
 	
 //	@Autowired

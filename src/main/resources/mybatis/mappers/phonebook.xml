@@ -44,5 +44,12 @@
 			INSERT INTO person VALUES (seq_person_id.nextval, #{name}, #{hp}, #{company})
 		]]>
 	</insert>
+	
+	<insert id="insert2" parameterType="map">
+		<![CDATA[
+			INSERT INTO person VALUES (seq_person_id.nextval, #{name}, #{hp}, #{company})
+		]]>
+	</insert>
+	
 </mapper>
 
