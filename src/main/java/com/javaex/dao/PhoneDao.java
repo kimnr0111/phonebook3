@@ -50,12 +50,28 @@ public class PhoneDao {
 	}
 	
 	public Map<String, Object> getPerson2(int personId) {
-		Map<String, Object> personMap =  sqlSession.selectOne("phonebook.selectById2", personId);
+		Map<String, Object> personMap = sqlSession.selectOne("phonebook.selectById2", personId);
 		
 		personMap.get("personId");
 		
 		return personMap;
 		
+	}
+	
+	// 사람 수정
+	public int personUpdate(PersonVo personVo) {
+		int count = sqlSession.update("phonebook.update", personVo);
+
+		return count;
+		
+
+	}
+	
+	// 사람 삭제
+	public int personDelete(int personId) {
+		int count = sqlSession.delete("phonebook.delete", personId);
+		
+		return count;
 	}
 
 	

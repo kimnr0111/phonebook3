@@ -36,6 +36,11 @@ public class PhoneController {
 		
 	}
 	
+	@RequestMapping(value = "/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
+	public String writeForm() {
+		
+		return "writeForm";
+	}
 	
 	@RequestMapping(value = "/write", method = {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PersonVo personVo) {
@@ -60,13 +65,6 @@ public class PhoneController {
 		
 	}
 	
-	
-	@RequestMapping(value = "/writeForm", method = {RequestMethod.GET, RequestMethod.POST})
-	public String writeForm() {
-		
-		return "writeForm";
-	}
-	
 	@RequestMapping(value="/updateForm")
 	public String updateForm(Model model, @RequestParam("pid") int personId) {
 		System.out.println("/phone/updateForm");
@@ -87,6 +85,25 @@ public class PhoneController {
 		
 		return "updateForm2";
 		
+	}
+	
+	@RequestMapping(value = "/update", method = {RequestMethod.GET, RequestMethod.POST})
+	public String update(@ModelAttribute PersonVo personVo) {
+		System.out.println("/phone/update");
+		
+		phoneDao.personUpdate(personVo);
+		System.out.println(personVo.toString());
+		
+		return "redirect:/phone/list";
+	}
+	
+	@RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
+	public String delete(@RequestParam("pid") int personId) {
+		System.out.println("/phone/delete");
+		
+		phoneDao.personDelete(personId);
+		
+		return "redirect:/phone/list";
 	}
 
 	/*

@@ -79,6 +79,25 @@
 		]]>
 	</insert>
 	
+	<!-- 리스트 수정 -->
+	<update id="update" parameterType="com.javaex.vo.PersonVo">
+		<![CDATA[
+			update person
+			set name = #{name},
+			hp = #{hp},
+			company = #{company}
+			where person_id = #{personId}
+		]]>
+	</update>
+	
+	<!-- 리스트 삭제 -->
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+			delete from person
+			where person_id = #{personId}
+		]]>
+	</delete>
+	
 	
 </mapper>
 
