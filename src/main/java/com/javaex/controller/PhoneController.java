@@ -35,7 +35,7 @@ public class PhoneController {
 		
 	}
 	
-	/*
+	
 	@RequestMapping(value = "/write", method = {RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute PersonVo personVo) {
 		System.out.println("/phone/write");
@@ -54,7 +54,7 @@ public class PhoneController {
 		return "writeForm";
 	}
 
-	
+	/*
 	@RequestMapping(value = "/updateForm", method = {RequestMethod.GET, RequestMethod.POST})
 	public String updateForm(Model model, @RequestParam("pid") int personId) {
 		System.out.println("/phone/updateForm");

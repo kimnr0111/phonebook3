@@ -19,9 +19,15 @@ public class PhoneDao {
 
 	 //사람 리스트(검색할때)
 	public List<PersonVo> getPersonList() {
-		List<PersonVo> personList = sqlSession.selectList("phonebook.getlist");
-		System.out.println(personList.toString());
+		List<PersonVo> personList = sqlSession.selectList("phonebook.selectList");
 		return personList;
+	}
+	
+	// 사람 추가
+	public int personInsert(PersonVo personVo) {
+		int count = sqlSession.insert("phonebook.insert", personVo);
+		System.out.println(count);
+		return count;
 	}
 	
 //	@Autowired

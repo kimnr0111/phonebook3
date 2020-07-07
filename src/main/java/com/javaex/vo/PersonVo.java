@@ -58,7 +58,7 @@ public class PersonVo {
 
 	@Override
 	public String toString() {
-		return "PersonVo [personId=" + personId + ", name=" + name + ", hp=" + hp + ", company=" + company + "]";
+		return "\n PersonVo [personId=" + personId + ", name=" + name + ", hp=" + hp + ", company=" + company + "]";
 	}
 
 	
