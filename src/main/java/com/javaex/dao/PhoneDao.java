@@ -41,6 +41,24 @@ public class PhoneDao {
 		
 	}
 	
+	public PersonVo getPerson(int personId) {
+		
+		PersonVo personVo = sqlSession.selectOne("phonebook.selectById", personId);
+		System.out.println(personVo);
+	
+		return personVo;
+	}
+	
+	public Map<String, Object> getPerson2(int personId) {
+		Map<String, Object> personMap =  sqlSession.selectOne("phonebook.selectById2", personId);
+		
+		personMap.get("personId");
+		
+		return personMap;
+		
+	}
+
+	
 //	@Autowired
 //	private DataSource dataSource;
 

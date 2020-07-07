@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,6 +65,28 @@ public class PhoneController {
 	public String writeForm() {
 		
 		return "writeForm";
+	}
+	
+	@RequestMapping(value="/updateForm")
+	public String updateForm(Model model, @RequestParam("pid") int personId) {
+		System.out.println("/phone/updateForm");
+		
+		PersonVo personVo = phoneDao.getPerson(personId);
+		model.addAttribute("person", personVo);
+		
+		return "updateForm";
+		
+	}
+	
+	@RequestMapping(value="/updateForm2", method = {RequestMethod.GET, RequestMethod.POST})
+	public String updateForm2(Model model, @RequestParam("pid") int personId) {
+		System.out.println("/phone/updateForm2");
+		
+		Map<String, Object> personMap = phoneDao.getPerson2(personId);
+		model.addAttribute("person", personMap);
+		
+		return "updateForm2";
+		
 	}
 
 	/*
